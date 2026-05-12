@@ -3,6 +3,8 @@
 # - exit 0 으로만 종료 (도구 호출을 차단하지 않음)
 # - 매칭이 아니거나 입력 파싱 실패 시 무음
 $ErrorActionPreference = 'SilentlyContinue'
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+$OutputEncoding = [System.Text.Encoding]::UTF8
 
 $payload = [Console]::In.ReadToEnd()
 if (-not $payload) { exit 0 }
@@ -20,7 +22,7 @@ if ($j.tool_input -and $j.tool_input.file_path) { $path = [string]$j.tool_input.
 elseif ($j.toolInput -and $j.toolInput.file_path) { $path = [string]$j.toolInput.file_path }
 
 if ($path -and $path -match 'src[\\/].+\.tsx?$') {
-  Write-Output "src/ 변경 감지 ($path) - 아키텍처 다이어그램이 오래되었을 수 있습니다. /mermaid-diagram 으로 docs/architecture/index.html 을 갱신하세요."
+  Write-Output "[arch] src/ change detected ($path). The architecture diagram may be stale -- run /mermaid-diagram to refresh docs/architecture/index.html."
 }
 
 exit 0
