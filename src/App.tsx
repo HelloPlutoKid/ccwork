@@ -29,11 +29,7 @@ function App() {
         onNewNote={handleNewNote}
         sidebar={<NoteList selectedNoteId={selectedNoteId} onSelect={handleSelectNote} />}
         main={
-          <NoteEditor
-            selectedNoteId={selectedNoteId}
-            isCreating={isCreating}
-            onDone={handleDone}
-          />
+          <NoteEditor selectedNoteId={selectedNoteId} isCreating={isCreating} onDone={handleDone} />
         }
       />
     </NotesProvider>
